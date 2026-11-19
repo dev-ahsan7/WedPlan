@@ -3,6 +3,7 @@ import { Cormorant_Garamond, Geist } from 'next/font/google';
 import { ThemeProvider } from 'next-themes';
 import './globals.css';
 import { Navbar } from '@/components/layout/navbar';
+import { SiteFooter } from '@/components/layout/site-footer';
 import { Toaster } from '@/components/ui/sonner';
 
 const geist = Geist({
@@ -36,6 +37,7 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
         <ThemeProvider attribute="class" forcedTheme="light">
           <Navbar />
           <main className="flex-1">{children}</main>
+          <SiteFooter />
           <Toaster position="top-center" />
         </ThemeProvider>
       </body>
