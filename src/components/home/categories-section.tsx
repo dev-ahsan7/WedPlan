@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
+import { FadeIn } from '@/components/shared/fade-in';
 
 const categoryCards = [
   {
@@ -38,7 +39,7 @@ const categoryCards = [
 export function CategoriesSection() {
   return (
     <section className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
-      <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+      <FadeIn className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
         <div>
           <p className="text-xs tracking-[0.2em] text-primary uppercase">
             Wedding service categories
@@ -57,11 +58,11 @@ export function CategoriesSection() {
             aria-hidden
           />
         </Link>
-      </div>
+      </FadeIn>
 
-      <ul className="mt-12 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 lg:grid-cols-3 lg:gap-x-8">
+      <div className="mt-12 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 lg:grid-cols-3 lg:gap-x-8">
         {categoryCards.map((category, index) => (
-          <li key={category.name}>
+          <FadeIn key={category.name} delay={(index % 3) * 0.1}>
             <Link
               href={`/services?category=${encodeURIComponent(category.name)}`}
               className="group block"
@@ -90,9 +91,9 @@ export function CategoriesSection() {
                 {category.text}
               </p>
             </Link>
-          </li>
+          </FadeIn>
         ))}
-      </ul>
+      </div>
     </section>
   );
 }

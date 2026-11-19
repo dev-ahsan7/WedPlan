@@ -9,6 +9,7 @@ import {
   Store,
   UserRoundPlus,
 } from 'lucide-react';
+import { FadeIn } from '@/components/shared/fade-in';
 import { Button } from '@/components/ui/button';
 
 const steps = {
@@ -53,7 +54,7 @@ export function HowItWorksSection() {
 
   return (
     <section className="mx-auto max-w-6xl px-4 py-24 sm:px-6">
-      <div className="text-center">
+      <FadeIn className="text-center">
         <p className="text-xs tracking-[0.2em] text-primary uppercase">
           How WedPlan works
         </p>
@@ -93,9 +94,9 @@ export function HowItWorksSection() {
             For vendors
           </button>
         </div>
-      </div>
+      </FadeIn>
 
-      <ol className="relative mt-16 grid gap-12 md:grid-cols-3 md:gap-8">
+      <div className="relative mt-16 grid gap-12 md:grid-cols-3 md:gap-8">
         {/* Dashed line that joins the steps, like an aisle */}
         <span
           className="absolute top-10 right-[16%] left-[16%] hidden border-t-2 border-dashed border-primary/25 md:block"
@@ -103,7 +104,7 @@ export function HowItWorksSection() {
         />
 
         {steps[tab].map((step, index) => (
-          <li key={step.title} className="relative text-center">
+          <FadeIn key={step.title} delay={index * 0.15} className="relative text-center">
             <div className="relative mx-auto grid size-20 place-items-center rounded-full border border-primary/30 bg-background">
               <span className="grid size-14 place-items-center rounded-full bg-accent text-primary">
                 <step.icon className="size-6" aria-hidden />
@@ -116,9 +117,9 @@ export function HowItWorksSection() {
             <p className="mx-auto mt-2 max-w-xs text-sm leading-6 text-muted-foreground">
               {step.text}
             </p>
-          </li>
+          </FadeIn>
         ))}
-      </ol>
+      </div>
 
       <div className="mt-14 text-center">
         <Button

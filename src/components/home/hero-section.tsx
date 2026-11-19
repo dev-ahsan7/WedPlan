@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowUpRight, CircleCheck, Sparkles } from 'lucide-react';
+import { FadeIn } from '@/components/shared/fade-in';
 import { Button } from '@/components/ui/button';
 import { categories } from '@/lib/categories';
 
@@ -14,7 +15,7 @@ export function HeroSection() {
       />
 
       <div className="relative mx-auto grid max-w-6xl items-center gap-14 px-4 pt-12 pb-20 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:pt-16">
-        <div>
+        <FadeIn>
           <p className="inline-flex items-center gap-2 rounded-full border bg-card px-3 py-1.5 text-xs text-muted-foreground">
             <Sparkles className="size-3.5 text-primary" aria-hidden />
             Wedding planning, made simple
@@ -64,10 +65,13 @@ export function HeroSection() {
               </Link>
             ))}
           </div>
-        </div>
+        </FadeIn>
 
         {/* Photos in an arch, like a chapel window */}
-        <div className="relative mx-auto w-full max-w-sm sm:max-w-md lg:max-w-none">
+        <FadeIn
+          delay={0.2}
+          className="relative mx-auto w-full max-w-sm sm:max-w-md lg:max-w-none"
+        >
           <div
             className="absolute inset-0 translate-x-4 -translate-y-4 rounded-t-full border border-primary/30"
             aria-hidden
@@ -102,7 +106,7 @@ export function HeroSection() {
               </p>
             </div>
           </div>
-        </div>
+        </FadeIn>
       </div>
     </section>
   );

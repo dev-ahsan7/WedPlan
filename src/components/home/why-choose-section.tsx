@@ -1,4 +1,5 @@
 import { CalendarHeart, Check, Clock, LayoutGrid, ShieldCheck, Wallet } from 'lucide-react';
+import { FadeIn } from '@/components/shared/fade-in';
 
 // Each benefit matches a real feature of the platform
 const benefits = [
@@ -33,7 +34,7 @@ export function WhyChooseSection() {
     <section className="px-3 py-8 sm:px-6">
       <div className="mx-auto max-w-6xl rounded-[2.5rem] bg-secondary px-5 py-14 sm:px-10 lg:px-14 lg:py-20">
         <div className="grid gap-14 lg:grid-cols-[0.9fr_1.1fr]">
-          <div>
+          <FadeIn>
             <p className="text-xs tracking-[0.2em] text-primary uppercase">
               Why choose WedPlan?
             </p>
@@ -81,12 +82,13 @@ export function WhyChooseSection() {
                 </li>
               </ol>
             </div>
-          </div>
+          </FadeIn>
 
-          <ul className="divide-y divide-dashed divide-primary/25 border-y border-dashed border-primary/25">
-            {benefits.map((benefit) => (
-              <li
+          <div className="divide-y divide-dashed divide-primary/25 border-y border-dashed border-primary/25">
+            {benefits.map((benefit, index) => (
+              <FadeIn
                 key={benefit.title}
+                delay={index * 0.1}
                 className="grid grid-cols-[3rem_1fr] gap-4 py-7 sm:grid-cols-[4rem_1fr_auto] sm:gap-6"
               >
                 <span className="font-heading text-4xl leading-none text-primary italic sm:text-5xl">
@@ -101,9 +103,9 @@ export function WhyChooseSection() {
                 <span className="hidden size-12 place-items-center rounded-full bg-card text-primary sm:grid">
                   <benefit.icon className="size-5" aria-hidden />
                 </span>
-              </li>
+              </FadeIn>
             ))}
-          </ul>
+          </div>
         </div>
       </div>
     </section>
