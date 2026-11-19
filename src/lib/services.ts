@@ -14,5 +14,17 @@ export const getServices = async (query = ''): Promise<Service[]> => {
   return response.json();
 };
 
+export const getLocations = async (): Promise<string[]> => {
+  const response = await fetch(`${API_URI}/services/locations`, {
+    cache: 'no-store',
+  });
+
+  if (!response.ok) {
+    return [];
+  }
+
+  return response.json();
+};
+
 // Prices are in Bangladeshi taka, for example ৳45,000
 export const formatPrice = (price: number) => `৳${price.toLocaleString('en-US')}`;
