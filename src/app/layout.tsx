@@ -1,14 +1,20 @@
 import type { Metadata } from 'next';
-import { Cormorant_Garamond, Geist } from 'next/font/google';
+import { Cormorant_Garamond } from 'next/font/google';
+import localFont from 'next/font/local';
 import { ThemeProvider } from 'next-themes';
 import './globals.css';
 import { Navbar } from '@/components/layout/navbar';
 import { SiteFooter } from '@/components/layout/site-footer';
 import { Toaster } from '@/components/ui/sonner';
 
-const geist = Geist({
-  subsets: ['latin'],
-  variable: '--font-geist',
+// Satoshi is from Fontshare (free to use), so the files live in the project
+const satoshi = localFont({
+  src: [
+    { path: './fonts/Satoshi-Regular.woff2', weight: '400' },
+    { path: './fonts/Satoshi-Medium.woff2', weight: '500' },
+    { path: './fonts/Satoshi-Bold.woff2', weight: '700' },
+  ],
+  variable: '--font-satoshi',
 });
 
 const cormorant = Cormorant_Garamond({
@@ -30,7 +36,7 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
   return (
     <html
       lang="en"
-      className={`${geist.variable} ${cormorant.variable} h-full antialiased`}
+      className={`${satoshi.variable} ${cormorant.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <body className="flex min-h-full flex-col font-sans" suppressHydrationWarning>
