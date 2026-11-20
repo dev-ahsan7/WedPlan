@@ -40,3 +40,6 @@ export const setServiceAvailability = (id: string, isActive: boolean) =>
   sendWithToken('PATCH', `/services/${id}/availability`, { isActive });
 
 export const deleteService = (id: string) => sendWithToken('DELETE', `/services/${id}`);
+
+export const respondToBooking = (id: string, status: 'accepted' | 'rejected') =>
+  sendWithToken('PATCH', `/vendor/bookings/${id}`, { status });
