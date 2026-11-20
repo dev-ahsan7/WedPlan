@@ -27,3 +27,18 @@ export const createBooking = async (booking: BookingRequest) => {
   }
   return result;
 };
+
+// Customers can cancel their own requests while they are still pending
+export const cancelBooking = async (id: string) => {
+  const token = await getTokenFromClient();
+  const response = await fetch(`${API_URI}/bookings/${id}/cancel`, {
+    method: 'PATCH',
+    headers: { Authorization: `Bearer ${token}` },
+  });
+
+  const result = await response.json();
+  if (!response.ok) {
+    throw new Error(result.message || 'Could not cancel the booking request.');
+  }
+  return result;
+};
