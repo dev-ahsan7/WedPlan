@@ -111,6 +111,8 @@ export default async function ServiceDetailsPage({
               isOwner={isOwner}
               isPublic={isPublic}
               serviceId={service._id}
+              serviceName={service.serviceName}
+              location={service.location}
             />
           </div>
 

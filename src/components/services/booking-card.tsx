@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { Info } from 'lucide-react';
+import { BookingForm } from '@/components/services/booking-form';
 import { Button } from '@/components/ui/button';
 
 type BookingCardProps = {
@@ -7,10 +8,19 @@ type BookingCardProps = {
   isOwner: boolean;
   isPublic: boolean;
   serviceId: string;
+  serviceName: string;
+  location: string;
 };
 
 // Shows who can book. The server checks the same rules again.
-export function BookingCard({ role, isOwner, isPublic, serviceId }: BookingCardProps) {
+export function BookingCard({
+  role,
+  isOwner,
+  isPublic,
+  serviceId,
+  serviceName,
+  location,
+}: BookingCardProps) {
   let message = '';
   if (!role) {
     message = 'Sign in with a customer account to send a booking request.';
@@ -57,15 +67,10 @@ export function BookingCard({ role, isOwner, isPublic, serviceId }: BookingCardP
   }
 
   return (
-    <div className="mt-6">
-      <p className="text-sm text-muted-foreground">
-        Pick your date and location, and the vendor will accept or decline your
-        request.
-      </p>
-      {/* The booking form is added together with the bookings API */}
-      <Button size="lg" className="mt-4 h-11 w-full rounded-full" disabled>
-        Request a booking
-      </Button>
-    </div>
+    <BookingForm
+      serviceId={serviceId}
+      serviceName={serviceName}
+      defaultLocation={location}
+    />
   );
 }
