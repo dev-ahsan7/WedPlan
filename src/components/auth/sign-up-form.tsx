@@ -93,7 +93,7 @@ export function SignUpForm() {
     }
 
     toast.success('Welcome to WedPlan! Your account is ready.');
-    router.push('/');
+    router.push('/dashboard');
     router.refresh();
   };
 
@@ -225,7 +225,7 @@ export function SignUpForm() {
         <span className="h-px flex-1 bg-border" />
       </div>
 
-      <GoogleButton role={role} />
+      <GoogleButton role={role} redirectTo="/dashboard" />
       <p className="mt-2 text-center text-xs text-muted-foreground">
         Google sign up uses the account type you picked above.
       </p>

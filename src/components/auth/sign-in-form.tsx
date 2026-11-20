@@ -18,7 +18,7 @@ export function SignInForm() {
   // Only allow redirects inside the site
   const redirect = searchParams.get('redirect');
   const redirectTo =
-    redirect?.startsWith('/') && !redirect.startsWith('//') ? redirect : '/';
+    redirect?.startsWith('/') && !redirect.startsWith('//') ? redirect : '/dashboard';
 
   const handleSignIn = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

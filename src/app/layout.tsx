@@ -2,8 +2,6 @@ import type { Metadata } from 'next';
 import { Cormorant_Garamond } from 'next/font/google';
 import localFont from 'next/font/local';
 import './globals.css';
-import { Navbar } from '@/components/layout/navbar';
-import { SiteFooter } from '@/components/layout/site-footer';
 import { Toaster } from '@/components/ui/sonner';
 
 // Satoshi is from Fontshare (free to use), so the files live in the project
@@ -39,9 +37,7 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
       suppressHydrationWarning
     >
       <body className="flex min-h-full flex-col font-sans" suppressHydrationWarning>
-        <Navbar />
-        <main className="flex-1">{children}</main>
-        <SiteFooter />
+        {children}
         <Toaster position="top-center" />
       </body>
     </html>
