@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { StatusBadge } from '@/components/dashboard/status-badge';
-import { formatDate } from '@/lib/dashboard';
+import { formatDate } from '@/lib/formatDate';
 import type { Booking } from '@/lib/types';
 
 type RecentBookingsProps = {

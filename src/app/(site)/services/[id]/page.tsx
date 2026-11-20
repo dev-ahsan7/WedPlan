@@ -7,7 +7,8 @@ import { BookingCard } from '@/components/services/booking-card';
 import { ServiceGallery } from '@/components/services/service-gallery';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { auth } from '@/lib/auth';
-import { formatPrice, getService } from '@/lib/services';
+import { formatPrice } from '@/lib/formatPrice';
+import { getService } from '@/lib/services';
 
 export const metadata: Metadata = {
   title: 'Service Details',

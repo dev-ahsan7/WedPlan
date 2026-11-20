@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { Crown, MapPin } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
-import { formatPrice } from '@/lib/services';
+import { formatPrice } from '@/lib/formatPrice';
 import type { Service } from '@/lib/types';
 
 export function ServiceCard({ service }: { service: Service }) {

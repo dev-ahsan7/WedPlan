@@ -28,10 +28,3 @@ export const getMyBookings = (): Promise<Booking[]> => fetchWithToken('/bookings
 
 export const getAdminOverview = (): Promise<AdminOverview> =>
   fetchWithToken('/admin/overview');
-
-export const formatDate = (date: string) =>
-  new Date(date).toLocaleDateString('en-GB', {
-    day: 'numeric',
-    month: 'short',
-    year: 'numeric',
-  });
