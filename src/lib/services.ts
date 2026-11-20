@@ -1,3 +1,4 @@
+import { getTokenFromServer } from './getTokenFromServer';
 import type { Service } from './types';
 
 const API_URI = process.env.NEXT_PUBLIC_API_URI;
@@ -9,6 +10,24 @@ export const getServices = async (query = ''): Promise<Service[]> => {
 
   if (!response.ok) {
     throw new Error('Could not load the services.');
+  }
+
+  return response.json();
+};
+
+// Returns null when the service doesn't exist or isn't visible to this user
+export const getService = async (id: string): Promise<Service | null> => {
+  const token = await getTokenFromServer();
+  const response = await fetch(`${API_URI}/services/${id}`, {
+    cache: 'no-store',
+    headers: { Authorization: `Bearer ${token}` },
+  });
+
+  if (response.status === 404) {
+    return null;
+  }
+  if (!response.ok) {
+    throw new Error('Could not load this service.');
   }
 
   return response.json();
