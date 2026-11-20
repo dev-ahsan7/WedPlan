@@ -31,6 +31,36 @@ export type Booking = {
   customer?: Person;
 };
 
+export type AdminUser = {
+  _id: string;
+  name: string;
+  email: string;
+  image?: string | null;
+  role: 'admin' | 'vendor' | 'customer';
+  businessName?: string;
+  isBlocked?: boolean;
+  subscriptionPlan?: string;
+  createdAt: string;
+};
+
+export type AdminUserDetails = AdminUser & {
+  subscriptionExpiresAt?: string;
+  stats: { services: number; bookingsSent: number; bookingsReceived: number };
+};
+
+export type Transaction = {
+  _id: string;
+  vendorId: string;
+  plan: string;
+  amount: number;
+  currency: string;
+  stripeSessionId: string;
+  stripeSubscriptionId?: string;
+  status: string;
+  createdAt: string;
+  vendor?: { _id: string; name: string; email: string; image?: string | null; businessName?: string };
+};
+
 export type AdminOverview = {
   totalUsers: number;
   totalVendors: number;

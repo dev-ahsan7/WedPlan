@@ -1,5 +1,5 @@
 import { getTokenFromServer } from './getTokenFromServer';
-import type { AdminOverview, Booking, Service } from './types';
+import type { AdminOverview, AdminUser, Booking, Service, Transaction } from './types';
 
 const API_URI = process.env.NEXT_PUBLIC_API_URI;
 
@@ -28,3 +28,12 @@ export const getMyBookings = (): Promise<Booking[]> => fetchWithToken('/bookings
 
 export const getAdminOverview = (): Promise<AdminOverview> =>
   fetchWithToken('/admin/overview');
+
+export const getAdminUsers = (query = ''): Promise<AdminUser[]> =>
+  fetchWithToken(`/admin/users${query}`);
+
+export const getAdminServices = (query = ''): Promise<Service[]> =>
+  fetchWithToken(`/admin/services${query}`);
+
+export const getAdminTransactions = (): Promise<Transaction[]> =>
+  fetchWithToken('/admin/transactions');
