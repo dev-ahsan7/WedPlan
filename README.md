@@ -2,7 +2,7 @@
 
 WedPlan is a wedding planning platform. Couples browse wedding services and send booking requests to the vendors they like. Vendors publish their services, answer booking requests and can upgrade to Premium for unlimited services. Admins review services, manage users and see every subscription payment.
 
-- **Live website:** _add after deploying_
+- **Live website:** https://wedplan-red-nine.vercel.app
 - **Client repository:** [dev-ahsan7/WedPlan](https://github.com/dev-ahsan7/WedPlan)
 - **Server repository:** [dev-ahsan7/wedplan-server](https://github.com/dev-ahsan7/wedplan-server)
 
