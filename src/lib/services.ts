@@ -33,14 +33,17 @@ export const getService = async (id: string): Promise<Service | null> => {
   return response.json();
 };
 
+// The location filter is optional, so the page still works without it
 export const getLocations = async (): Promise<string[]> => {
-  const response = await fetch(`${API_URI}/services/locations`, {
-    cache: 'no-store',
-  });
-
-  if (!response.ok) {
+  try {
+    const response = await fetch(`${API_URI}/services/locations`, {
+      cache: 'no-store',
+    });
+    if (!response.ok) {
+      return [];
+    }
+    return await response.json();
+  } catch {
     return [];
   }
-
-  return response.json();
 };
