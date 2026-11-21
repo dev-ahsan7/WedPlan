@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
-import { headers } from 'next/headers';
 import { Check, Crown, ShieldCheck } from 'lucide-react';
+import { CancelSubscriptionButton } from '@/components/dashboard/cancel-subscription-button';
 import { PageHeader } from '@/components/dashboard/page-header';
 import { UpgradeButton } from '@/components/dashboard/upgrade-button';
-import { auth } from '@/lib/auth';
+import { getMySubscription } from '@/lib/dashboard';
 import { formatDate } from '@/lib/formatDate';
 
 export const metadata: Metadata = {
@@ -18,11 +18,10 @@ const premiumFeatures = [
 ];
 
 export default async function SubscriptionPage() {
-  const session = await auth.api.getSession({ headers: await headers() });
-  const expiresAt = session?.user.subscriptionExpiresAt;
-  const isPremium =
-    session?.user.subscriptionPlan === 'premium' &&
-    (!expiresAt || new Date(expiresAt) > new Date());
+  // The server decides the plan, including Premium that has run out
+  const subscription = await getMySubscription();
+  const isPremium = subscription.plan === 'premium';
+  const expiresAt = subscription.subscriptionExpiresAt;
 
   return (
     <>
@@ -85,11 +84,22 @@ export default async function SubscriptionPage() {
           </ul>
 
           <div className="mt-auto">
-            {isPremium ? (
-              <p className="rounded-2xl bg-emerald-50 p-4 text-sm text-emerald-800">
-                Premium is active
-                {expiresAt ? ` and renews on ${formatDate(String(expiresAt))}.` : '.'}
+            {isPremium && subscription.cancelAtPeriodEnd ? (
+              <p className="rounded-2xl bg-amber-50 p-4 text-sm text-amber-900">
+                Your subscription is cancelled. Premium stays active
+                {expiresAt ? ` until ${formatDate(expiresAt)}` : ''}, then you move to the Free
+                plan.
               </p>
+            ) : isPremium ? (
+              <>
+                <p className="rounded-2xl bg-emerald-50 p-4 text-sm text-emerald-800">
+                  Premium is active
+                  {expiresAt ? ` and renews on ${formatDate(expiresAt)}.` : '.'}
+                </p>
+                <CancelSubscriptionButton
+                  endDate={expiresAt ? formatDate(expiresAt) : 'the end of this month'}
+                />
+              </>
             ) : (
               <>
                 <UpgradeButton />

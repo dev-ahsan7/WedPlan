@@ -37,3 +37,9 @@ export const getAdminServices = (query = ''): Promise<Service[]> =>
 
 export const getAdminTransactions = (): Promise<Transaction[]> =>
   fetchWithToken('/admin/transactions');
+
+export const getMySubscription = (): Promise<{
+  plan: string;
+  subscriptionExpiresAt?: string;
+  cancelAtPeriodEnd: boolean;
+}> => fetchWithToken('/subscriptions/me');

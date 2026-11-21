@@ -14,3 +14,5 @@ export const startCheckout = (): Promise<{ url: string }> =>
 
 export const getPaymentStatus = (sessionId: string): Promise<PaymentStatus> =>
   sendWithToken('GET', `/subscriptions/session/${sessionId}`);
+
+export const cancelSubscription = () => sendWithToken('POST', '/subscriptions/cancel');
