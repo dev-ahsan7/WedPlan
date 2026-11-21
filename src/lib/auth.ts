@@ -3,9 +3,18 @@ import { APIError, createAuthMiddleware, getOAuthState } from 'better-auth/api';
 import { jwt } from 'better-auth/plugins';
 import { mongodbAdapter } from '@better-auth/mongo-adapter';
 import { MongoClient } from 'mongodb';
+import { attachDatabasePool } from '@vercel/functions';
 
 const client = new MongoClient(process.env.MONGODB_URI as string);
 const db = client.db('wedPlan');
+
+// On Vercel this closes idle connections before the function sleeps,
+// so a woken-up function doesn't use a dead connection
+attachDatabasePool(client);
+
+// Connect before Better Auth uses the client. If the function goes to sleep
+// while a connection is still opening, MongoDB closes the client for good.
+await client.connect();
 
 export const auth = betterAuth({
   database: mongodbAdapter(db, {
